@@ -4,7 +4,7 @@ def spawn (parent1,parent2):
     return
 
 def cull (poolOfContenders):
-    # reduce number of individuals to specified population
+    # reduce number of individuals to specified population TEST
     return
 
 class Mutate (parent):
