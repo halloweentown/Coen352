@@ -1,44 +1,27 @@
 #COEN 352 Project
-def spawn (parent1,parent2):
-    #2nd parent in case of cross over
-    return
+#import Mutate
+import numbers as np
+import random as rng
+import SortIndividual
+import globalVariables
+import mergeSortInversions
+
+inputArray = [9,3,13,19,13,22,22,62,66,73,79,82,96,99,115,127,130,134,143,171,182,189,189,213,225,227,230,242,244,246,253,288,297,307,329,340,374,382,391,409,422,424,434,440,442,448,458,471,477,498,511,521,528,533,549,551,562,573,581,581,585,586,586,587,588,598,612,643,651,651,685,699,699,708,711,745,760,764,766,777,779,785,786,804,812,813,829,830,843,871,876,910,915,917,918,928,940,977,988,991]
+
+sorted,_=mergeSortInversions.mergeSortInversions(inputArray)
+print(sorted)
+_,inversions=mergeSortInversions.mergeSortInversions(inputArray)
+print(inversions)
+print(mergeSortInversions.mergeSortInversions(inputArray))
+
+a=SortIndividual.SortIndividual()
+
+# Reference code for raw input
+# username = raw_input("What is your login? :  ")
+
+# x = np.array()
 
 def cull (poolOfContenders):
-    # reduce number of individuals to specified population TEST
+    # Reduce number of individuals to specified population
     return
-
-class Mutate (parent):
-    #different mutation functions
-    def add (self):
-        #add new swap
-        return
-    def delete (self):
-        #
-        return
-    def modifiy (self):
-        #
-        return
     
-    #Time permitting
-    #def swap (self):
-        ## swap
-        #return
-    
-class SortIndividual:
-    def __init__(self):
-        #member Variables
-        #TODO swaps
-        #TODO mutation history
-        #TODO fitness : effi and effe
-        #TODO age
-        return
-    #member Methods
-    #TODO swaps
-    #TODO mutation history
-    #TODO fitness measurement: effi 
-    #TODO fitness measurement: effe
-    #TODO increment age    
-    def spawn (self,parent2):
-            #generates copy of iteself (child)
-            #2nd parent in case of cross over
-        return
