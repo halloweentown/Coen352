@@ -29,7 +29,7 @@ class SortIndividual:
         effectivenes = 0            # fitness
         age = 0                       # Number of iterations survived
         #TODO N2H - mutation history
-        # mHistory = []
+        mHistory = []
         return
     
     # ~~~~~~~~~~~~~~~ member Methods
