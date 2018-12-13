@@ -4,23 +4,40 @@ import numbers as np
 import random as rng
 import SortIndividual
 import globalVariables
-import countInversions
-
-# Input array to be sorted
-inputArray = [9,3,13,19,13,22,22,62,66,73,79,82,96,99,115,127,130,134,143,171,182,189,189,213,225,227,230,242,244,246,253,288,297,307,329,340,374,382,391,409,422,424,434,440,442,448,458,471,477,498,511,521,528,533,549,551,562,573,581,581,585,586,586,587,588,598,612,643,651,651,685,699,699,708,711,745,760,764,766,777,779,785,786,804,812,813,829,830,843,871,876,910,915,917,918,928,940,977,988,991]
-
-# Create initial sort to be evolved
-a=SortIndividual.SortIndividual()
-print(a.sort)
-
-# Mutate Offspring of individual
-a.add()
-print(a.sort)
+from countInversions import *
+import globalVariables as gv
 
 # Tournament selection of best sort
+def cull(parent, child):
+    if child.effectiveness > parent.effectiveness:
+        del child
+        b = parent
+    else:
+        del parent
+        b = child
+    return  b
 
-# Print Survivor's specs
+# Input array to be sorted
+inputArray = gv.inputArray
+print("initial # of inversions was " + str(countInversions(inputArray)))
 
+# Create initial sort to be evolved
+parent0=SortIndividual.SortIndividual()
+parent0.applySort(inputArray)
+parent0.calcFitness()
+OGPF = parent0.effectiveness
+
+
+for i in range(4000):
+    # Mutate Offspring of individual
+    child = parent0.mutate()
+    
+    print("Parent effectiveness = " + str(parent0.effectiveness))
+    print("Child effectiveness = " + str(child.effectiveness))
+    parent0 = cull(parent0, child)
+    print(parent0.effectiveness)    
+
+print("O.G. Parent Fitness = " + str(OGPF))
 # End condition (# of iterations, and/or fitness criteria)
 
 
@@ -35,7 +52,4 @@ print(countInversions.countInversions(inputArray))'''
 
 # x = np.array()
 
-def cull (poolOfContenders):
-    # Reduce number of individuals to specified population
-    return
     
