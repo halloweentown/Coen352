@@ -1,7 +1,7 @@
 #GLOBAL VARIABLES
 
 iEvolution = 0		# Evolution index
-nEvolutions = 1000	# Number of evolutions
+nEvolutions = 4000	# Number of evolutions
 
 # probabilities of each mutation occuring
 m1p = 0.25	# Probability of conducting a swap mutation

@@ -7,6 +7,7 @@ import SortIndividual
 import globalVariables
 from countInversions import *
 import globalVariables as gv
+import pylab
 
 # Tournament selection of best sort
 def cull(parent, child):
@@ -25,8 +26,9 @@ print("initial # of inversions was " + str(countInversions(inputArray)))
 # Create initial sort to be evolved
 parent0=SortIndividual.SortIndividual()     
 parent0.applySort(inputArray)               # Apply sort to array of inputs
-OGPF = parent0.calcFitness()                  # Calculate original parent fitness
+parent0.calcFitness()                       # Calculate original parent fitness
 OGPE = parent0.effectiveness                # Original parent effectiveness
+OGPF = parent0.fitness                    # Original parent fitness
 nEffectiveness = []                         # List containing effectiveness scores
 nEfficiency = []                            # List containing efficiency scores
 nIterations = []                            # List containing iteration indices
@@ -46,14 +48,13 @@ for i in range(gv.nEvolutions):
     
     parent0 = cull(parent0, child)
     
-    print(parent0.effectiveness)
-    
     nIterations.append(i)
     
     gv.iEvolution = i
 
 print('Survivor fitness = ' + str(child.fitness))
 print('Survivor effectiveness = ' + str(child.effectiveness))
+print('Survivor History = ', child.mHistory)
 print("O.G. Parent Effectiveness = " + str(OGPE))
 print("O.G. Parent Fitness = " + str(OGPF))
 print('nEffectiveness: ', nEffectiveness)
@@ -61,12 +62,14 @@ print('nEfficiency: ', nEfficiency)
 print('nIterations: ', nIterations)
 
 
-plt.plot(nIterations,nEffectiveness, color='g')
-plt.plot(nIterations,nEfficiency, color='orange')
-plt.xlabel('Evolution Iteration')
-plt.ylabel('Fitness')
-plt.title('Fitness vs Evolution Iteration')
-plt.show()
+pylab.plot(nIterations,nEffectiveness, color='g', label='Effectiveness')
+pylab.plot(nIterations,nEfficiency, color='orange', label='Efficiency')
+pylab.plot(nIterations,nFitness, color='blue', label='Fitness')
+pylab.xlabel('Evolution Iteration')
+pylab.ylabel('Fitness')
+pylab.title('Fitness vs Evolution Iteration')
+pylab.legend(loc='upper left')
+pylab.show()
 # End condition (# of iterations, and/or fitness criteria)
 
 
