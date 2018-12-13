@@ -128,7 +128,15 @@ guimgr.overall-gui-state = {'windowing-policy': 'combined-window',
         'current_pages': [3,
                           4],
         'notebook_display': 'normal',
+<<<<<<< HEAD
         'notebook_percent': 0.5451713395638629,
+=======
+<<<<<<< HEAD
+        'notebook_percent': 0.5451713395638629,
+=======
+        'notebook_percent': 0.5747663551401869,
+>>>>>>> MutateIntoSortIndu
+>>>>>>> MutateIntoSortIndu
         'override_title': None,
         'pagelist': [('batch-search',
                       'wide',
