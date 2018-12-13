@@ -28,10 +28,10 @@ class SortIndividual:
             self.sort.append(swap)
             #print (sort)       
         # fitness 
-        self.efficiency = len(self.sort)      
-        #print(efficiency)
-        self.effectiveness = 0           # fitness
-        self.age = 0                       # Number of iterations survived
+        self.efficiency = len(self.sort)    # Number of swaps    
+        self.effectiveness = 0              # Number of inversions
+        self.fitness = 0
+        self.age = 0                        # Number of iterations survived
         #TODO N2H - mutation history
         self.mHistory = []
         return
@@ -56,8 +56,13 @@ class SortIndividual:
     def calcFitness (self):
         # measure and set fitness parameters of sort
         self.efficiency = len(self.sort)
-        self.effectiveness, _ = countInversions(self.sortResult) 
-        return
+        self.effectiveness, _ = countInversions(self.sortResult)  
+        
+        #if gv.iEvolution < int(0.9 * gv.nEvolutions):
+        self.fitness = self.effectiveness
+        #else:
+            #fitness = 0.5 * self.efficiency + 0.5 * self.effectiveness
+        return 
     
     '''different mutation functions'''
     def add (self):

@@ -10,7 +10,7 @@ import globalVariables as gv
 
 # Tournament selection of best sort
 def cull(parent, child):
-    if child.effectiveness > parent.effectiveness:
+    if child.fitness > parent.fitness:
         del child
         b = parent
     else:
@@ -25,30 +25,46 @@ print("initial # of inversions was " + str(countInversions(inputArray)))
 # Create initial sort to be evolved
 parent0=SortIndividual.SortIndividual()     
 parent0.applySort(inputArray)               # Apply sort to array of inputs
-parent0.calcFitness()                       # Calculate original parent fitness
-OGPF = parent0.effectiveness                # Original parent effectiveness
+OGPF = parent0.calcFitness()                  # Calculate original parent fitness
+OGPE = parent0.effectiveness                # Original parent effectiveness
 nEffectiveness = []                         # List containing effectiveness scores
+nEfficiency = []                            # List containing efficiency scores
 nIterations = []                            # List containing iteration indices
+nFitness = []                               # List containing fitness scores
 
-for i in range(1000):
+for i in range(gv.nEvolutions):
     # Mutate Offspring of individual
     nEffectiveness.append(parent0.effectiveness)
+    nEfficiency.append(parent0.efficiency)
+    nFitness.append(parent0.fitness)
     child = parent0.mutate()
+    
     print("Parent effectiveness = " + str(parent0.effectiveness))
+    print("Parent fitness = " + str(parent0.fitness))
     print("Child effectiveness = " + str(child.effectiveness))
+    print("Child fitness = " + str(child.fitness))
+    
     parent0 = cull(parent0, child)
-    print(parent0.effectiveness) 
+    
+    print(parent0.effectiveness)
+    
     nIterations.append(i)
+    
+    gv.iEvolution = i
 
+print('Survivor fitness = ' + str(child.fitness))
+print('Survivor effectiveness = ' + str(child.effectiveness))
+print("O.G. Parent Effectiveness = " + str(OGPE))
 print("O.G. Parent Fitness = " + str(OGPF))
 print('nEffectiveness: ', nEffectiveness)
+print('nEfficiency: ', nEfficiency)
 print('nIterations: ', nIterations)
 
 
 plt.plot(nIterations,nEffectiveness, color='g')
-#plt.plot(nIterations,nEfficiency, color='orange')
+plt.plot(nIterations,nEfficiency, color='orange')
 plt.xlabel('Evolution Iteration')
-plt.ylabel('Effectiveness in Number of Inversions')
+plt.ylabel('Fitness')
 plt.title('Fitness vs Evolution Iteration')
 plt.show()
 # End condition (# of iterations, and/or fitness criteria)
