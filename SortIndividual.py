@@ -58,10 +58,10 @@ class SortIndividual:
         self.efficiency = len(self.sort)
         self.effectiveness, _ = countInversions(self.sortResult)  
         
-        #if gv.iEvolution < int(0.9 * gv.nEvolutions):
-        self.fitness = self.effectiveness
-        #else:
-            #fitness = 0.5 * self.efficiency + 0.5 * self.effectiveness
+        if gv.iEvolution < int(0.9 * gv.nEvolutions):
+            self.fitness = 0.7 * self.effectiveness + 0.3 * self.efficiency
+        else:
+            self.fitness = 0.5 * self.efficiency + 0.5 * self.effectiveness
         return 
     
     '''different mutation functions'''
@@ -89,7 +89,7 @@ class SortIndividual:
 
     def delete (self):
         # delete swap from sort
-        if (len(self.sort) > gV.minSortLength):
+        if (len(self.sort) > int(gV.minSortLength/10)):
             self.sort.pop(rng.randint(0,len(self.sort) - 1))
             #Insert mutation abrieviation
             self.mHistory.append('D') 
