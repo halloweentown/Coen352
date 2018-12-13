@@ -28,7 +28,7 @@ parent0=SortIndividual.SortIndividual()
 parent0.applySort(inputArray)               # Apply sort to array of inputs
 parent0.calcFitness()                       # Calculate original parent fitness
 OGPE = parent0.effectiveness                # Original parent effectiveness
-OGPF = parent0.fitness                    # Original parent fitness
+OGPF = parent0.fitness                      # Original parent fitness
 nEffectiveness = []                         # List containing effectiveness scores
 nEfficiency = []                            # List containing efficiency scores
 nIterations = []                            # List containing iteration indices
@@ -52,9 +52,9 @@ for i in range(gv.nEvolutions):
     
     gv.iEvolution = i
 
-print('Survivor fitness = ' + str(child.fitness))
-print('Survivor effectiveness = ' + str(child.effectiveness))
-print('Survivor History = ', child.mHistory)
+print('Survivor fitness = ' + str(parent0.fitness))
+print('Survivor effectiveness = ' + str(parent0.effectiveness))
+print('Survivor History = ', parent0.mHistory)
 print("O.G. Parent Effectiveness = " + str(OGPE))
 print("O.G. Parent Fitness = " + str(OGPF))
 print('nEffectiveness: ', nEffectiveness)
@@ -67,21 +67,11 @@ pylab.plot(nIterations,nEfficiency, color='orange', label='Efficiency')
 pylab.plot(nIterations,nFitness, color='blue', label='Fitness')
 pylab.xlabel('Evolution Iteration')
 pylab.ylabel('Fitness')
-pylab.title('Fitness vs Evolution Iteration')
+pylab.title('Fitness vs Evolution Iteration: Randomly Sorted, Small Range')
 pylab.legend(loc='upper left')
 pylab.show()
 # End condition (# of iterations, and/or fitness criteria)
 
 
-'''_,inversions=countInversions.countInversions(inputArray)
-print(sorted)
-sorted,_=countInversions.countInversions(inputArray)
-print(inversions)
-print(countInversions.countInversions(inputArray))'''
-
-# Reference code for raw input
-# username = raw_input("What is your login? :  ")
-
-# x = np.array()
 
     
