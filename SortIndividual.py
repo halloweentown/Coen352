@@ -122,8 +122,3 @@ class SortIndividual:
         child.applySort(gv.inputArray)
         child.calcFitness()
         return child
-
-##Time permitting
-    ##def swap (self):
-        ### Swap the order of two swaps in a sort
-        ##return    
