@@ -1,44 +1,55 @@
 #COEN 352 Project
-def spawn (parent1,parent2):
-    #2nd parent in case of cross over
-    return
+#import Mutate
+import numbers as np
+import random as rng
+import SortIndividual
+import globalVariables
+from countInversions import *
+import globalVariables as gv
 
-def cull (poolOfContenders):
-    # reduce number of individuals to specified population TEST
-    return
+# Tournament selection of best sort
+def cull(parent, child):
+    if child.effectiveness > parent.effectiveness:
+        del child
+        b = parent
+    else:
+        del parent
+        b = child
+    return  b
 
-class Mutate (parent):
-    #different mutation functions
-    def add (self):
-        #add new swap
-        return
-    def delete (self):
-        #
-        return
-    def modifiy (self):
-        #
-        return
+# Input array to be sorted
+inputArray = gv.inputArray
+print("initial # of inversions was " + str(countInversions(inputArray)))
+
+# Create initial sort to be evolved
+parent0=SortIndividual.SortIndividual()
+parent0.applySort(inputArray)
+parent0.calcFitness()
+OGPF = parent0.effectiveness
+
+
+for i in range(4000):
+    # Mutate Offspring of individual
+    child = parent0.mutate()
     
-    #Time permitting
-    #def swap (self):
-        ## swap
-        #return
+    print("Parent effectiveness = " + str(parent0.effectiveness))
+    print("Child effectiveness = " + str(child.effectiveness))
+    parent0 = cull(parent0, child)
+    print(parent0.effectiveness)    
+
+print("O.G. Parent Fitness = " + str(OGPF))
+# End condition (# of iterations, and/or fitness criteria)
+
+
+'''_,inversions=countInversions.countInversions(inputArray)
+print(sorted)
+sorted,_=countInversions.countInversions(inputArray)
+print(inversions)
+print(countInversions.countInversions(inputArray))'''
+
+# Reference code for raw input
+# username = raw_input("What is your login? :  ")
+
+# x = np.array()
+
     
-class SortIndividual:
-    def __init__(self):
-        #member Variables
-        #TODO swaps
-        #TODO mutation history
-        #TODO fitness : effi and effe
-        #TODO age
-        return
-    #member Methods
-    #TODO swaps
-    #TODO mutation history
-    #TODO fitness measurement: effi 
-    #TODO fitness measurement: effe
-    #TODO increment age    
-    def spawn (self,parent2):
-            #generates copy of iteself (child)
-            #2nd parent in case of cross over
-        return
