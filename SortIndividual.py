@@ -59,8 +59,7 @@ class SortIndividual:
         self.effectiveness, _ = countInversions(self.sortResult) 
         return
     
-    # different mutation functions
-    
+    '''different mutation functions'''
     def add (self):
         # add new swap tuple to sort
         #i=0
